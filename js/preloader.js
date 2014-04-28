@@ -20,7 +20,9 @@ BasicGame.preloader.prototype = {
 		this.load.tilemap('mapThree1', 'ART/mapTiled.json', null, Phaser.Tilemap.TILED_JSON);
 		//this.load.tilemap('mapThree2', 'Tiles/mapTiledlayer2.json', null, Phaser.Tilemap.TILED_JSON);
 		this.load.tilemap('mapThree', 'Tiles/retry2.json', null, Phaser.Tilemap.TILED_JSON);
-		//this.load.tilemap('mapFour', 'Tiles/canadaOne.json', null, Phaser.Tilemap.TILED_JSON);
+		this.load.tilemap('canadaOne', 'Tiles/canada1.json', null, Phaser.Tilemap.TILED_JSON);
+		this.load.tilemap('canadaTwo', 'Tiles/canada2.json', null, Phaser.Tilemap.TILED_JSON);
+		this.load.tilemap('canadaThree', 'Tiles/canada3.json', null, Phaser.Tilemap.TILED_JSON);
 		
 		this.load.image('mainroad', 'ART/mapTiled.png');
 		this.load.image('houses', 'ART/houses.png');
@@ -29,6 +31,7 @@ BasicGame.preloader.prototype = {
 		this.load.image('fence', 'fence.png');
 		this.load.image('treetiles', 'ART/treetiles.png');
 		this.load.image('road', 'ART/road.png');
+		this.load.image('road1', 'ART/road1.png');
 		
 		//Sprites
 		this.load.spritesheet('bear', 'ART/bearDrive1.png', 128, 96);

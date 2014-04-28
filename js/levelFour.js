@@ -36,7 +36,7 @@ BasicGame.levelFour.prototype = {
 		tiles.addTilesetImage('houses');
 		//tiles.addTilesetImage('fence');
 		console.log("3 gets here?");
-		tiles.setCollisionByExclusion([0]);
+		tiles.setCollisionByExclusion([1,2,3]);
 		layer = tiles.createLayer('Tile Layer 1');
 		console.log("here?");
 		music = this.add.audio('music');
