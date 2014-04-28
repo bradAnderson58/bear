@@ -187,6 +187,7 @@ BasicGame.levelOne.prototype = {
 	},
 	addDudes: function(){
 		var newGuy = dudes.create(100, 100, 'dude');
+		
 		this.dudeHandler(newGuy, "vert");
 		newGuy = dudes.create(700,250,'dude');
 		this.dudeHandler(newGuy, "vert");
@@ -216,6 +217,8 @@ BasicGame.levelOne.prototype = {
 		this.dudeHandler(newGuy, "vert");
 	},
 	dudeHandler: function(newGuy, str){
+		newGuy.animations.add('walk', [0,1], 5, true);
+		newGuy.animations.play('walk');
 		if (str == "vert"){
 			this.add.tween(newGuy).to({ y: newGuy.body.y-60, x: newGuy.body.x  }, 1000,  Phaser.Easing.Linear.None, true)
 			.to({ y: newGuy.body.y+10, x: newGuy.body.x }, 1000, Phaser.Easing.Linear.None)

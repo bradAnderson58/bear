@@ -43,6 +43,14 @@ BasicGame.sneak.prototype = {
 	
 	create: function(){
 		index = 0;
+		var content = [
+		" ",
+		"Bear you need to get into Canada",
+		"Avoid the lights and Mounties",
+		"Use the trees to hide ",
+		" ",
+    
+		];
 		thing = this.time.now;
 		this.add.sprite(0,0,'snow');
 		music = this.add.audio('musicS');
@@ -136,7 +144,8 @@ BasicGame.sneak.prototype = {
 		var style = { font: "30pt Courier", fill: "#19cb65", stroke: "#111111", strokeThickness: 6 };
 		s = this.add.text(32, 550, '', style);
 		t = this.time.now + 80;
-		console.log(t);
+		console.log(content[1]);
+		screentext = this.add.text(120, 600, content[1]);
 	},
 	collisionHandler: function(be, li) {
 		if (!this.physics.overlap(bear, trees)){
@@ -151,7 +160,9 @@ BasicGame.sneak.prototype = {
 		}
 	},
    update: function() {
-		
+		if (this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)){
+			console.log("x = " + bear.body.x + " y = " + bear.body.y);
+		}
 		if (this.time.now - thing > t && index < content.length){
 			//  get the next character in the line
 			console.log(content);
@@ -243,6 +254,9 @@ BasicGame.sneak.prototype = {
 	
 	proceed: function(){
 		next = 'can1'
+		console.log("STOP");
+		music.stop();
+		musicf.stop();
 		this.game.state.start('store', health, intox, money, next);
 	},
 render: function() {
