@@ -51,7 +51,7 @@ BasicGame.preloader.prototype = {
 		this.load.audio('song', ['anthem.mp4', 'anthem.ogg']);
 		//this.load.audio('sing', ['singing.mp4', 'singing.ogg']);
 		
-		this.load.image('dude', 'ART/moredudes.jpg');
+		this.load.spritesheet('dude', 'ART/nakedgirl.png', 25, 46);
 		
 		//StoreStuff
 		this.load.image("store", "store/store.jpg");
