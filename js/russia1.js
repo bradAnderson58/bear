@@ -41,13 +41,13 @@ BasicGame.russia1.prototype = {
 		this.stage.backgroundColor = '#001f00';
 		//map = this.add.sprite(0,0,'roadOne');
 		//health = BasicGame.hp;
-		//map = this.add.sprite(0,0,'road');
 		
 		tiles = this.add.tilemap('russiaOne');
 		
 		//console.log("Street?");
 		tiles.addTilesetImage('road1');
-		tiles.addTilesetImage('snowcrap');
+		//tiles.addTilesetImage('snowcrap');
+		tiles.addTilesetImage('othersnow');
 		
 		//tiles.addTilesetImage('treetiles');
 		//tiles.addTilesetImage('town');
@@ -67,11 +67,12 @@ BasicGame.russia1.prototype = {
 		//dudeEvent = this.time.events.loop(this.rnd.integerInRange(1000,4000),this.dudeHandler,this);
 		//tiles.setCollisionByExclusion([0]);
 		//layer = tiles.createLayer('Tile Layer 1');
+		map = this.add.sprite(0,0,'russia1pic');
 		music = this.add.audio('music');
 		music.play();
 		
-		//player = this.add.sprite(25550,224,'car');
-		player = this.add.sprite(200,850,'car');
+		player = this.add.sprite(25550,224,'car');
+		//player = this.add.sprite(200,850,'car');
 		this.camera.follow(player);
 		player.anchor.setTo(0.5, 0.5);
 		player.angle = (180);

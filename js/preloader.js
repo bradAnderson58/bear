@@ -28,6 +28,7 @@ BasicGame.preloader.prototype = {
 		this.load.tilemap('russiaThree', 'Tiles/russia3.json', null, Phaser.Tilemap.TILED_JSON);
 		
 		this.load.image('mainroad', 'ART/mapTiled.png');
+		this.load.image('russia1pic', 'ART/russia1.png');
 		this.load.image('houses', 'ART/houses.png');
 		this.load.image('town', 'ART/town.png');
 		this.load.image('invisible', 'ART/invisible.png');
@@ -36,7 +37,7 @@ BasicGame.preloader.prototype = {
 		this.load.image('road', 'ART/road.png');
 		this.load.image('road1', 'ART/road1.png');
 		this.load.image('snowcrap', 'ART/snowcrap.png');
-		//this.load.image('othersnow', 'ART/Untitled-1 copy.png');
+		this.load.image('othersnow', 'ART/Untitled-1 copy.png');
 		this.load.image('kremlin', 'ART/Grand_Kremlin_Palace.png');
 		this.load.image('basil', 'ART/St-Basils-1.png');
 		
