@@ -1,5 +1,5 @@
 
-BasicGame.canada2 = function (game) {
+BasicGame.canada3 = function (game) {
 
 	var health;
 	var intox;
@@ -26,7 +26,7 @@ BasicGame.canada2 = function (game) {
 
 };
  
-BasicGame.canada2.prototype = {
+BasicGame.canada3.prototype = {
 	init: function(){
 		health = (hp/100)*192;
 		//health = health;
@@ -37,7 +37,7 @@ BasicGame.canada2.prototype = {
 		console.log(intox);
 		console.log(health);
 		console.log(money);
-		this.world.setBounds(0, 0, 12800, 6400);
+		this.world.setBounds(0, 0, 25600, 6400);
 		this.stage.backgroundColor = '#001f00';
 		//map = this.add.sprite(0,0,'roadOne');
 		//health = BasicGame.hp;
@@ -55,7 +55,7 @@ BasicGame.canada2.prototype = {
 		//console.log("before this?");
 		//tiles.addTilesetImage('houses');
 		
-		tiles.setCollisionByExclusion([1,2,3,7,8,9]);
+		tiles.setCollisionByExclusion([1,2,3,4,5,6,7,8]);
 		layer1 = tiles.createLayer('Tile Layer 1');
 		//street = this.add.sprite(0,0,'mainroad');
 		//layer = tiles.createLayer('Tile Layer 2');
@@ -69,8 +69,8 @@ BasicGame.canada2.prototype = {
 		music = this.add.audio('music');
 		music.play();
 		
-		player = this.add.sprite(50,3300,'car');
-		//player = this.add.sprite(170,200,'car');
+		player = this.add.sprite(25550,5000,'car');
+		//player = this.add.sprite(200,2400,'car');
 		this.camera.follow(player);
 		player.anchor.setTo(0.5, 0.5);
 		player.angle = (180);
@@ -107,7 +107,9 @@ BasicGame.canada2.prototype = {
 		//console.log(hp);
 		healthBar.fixedToCamera = true;
 		
-		finish = this.add.sprite(12350,0,'finish');
+		finish = this.add.sprite(30,2400,'finish');
+		finish.angle = 90;
+		//finish.scale.x = 1.65;
 		
 		this.input.keyboard.addKeyCapture([ Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.SPACEBAR, Phaser.Keyboard.DOWN, Phaser.Keyboard.UP ]);
     },
