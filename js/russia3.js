@@ -1,5 +1,5 @@
 
-BasicGame.canada3 = function (game) {
+BasicGame.russia3 = function (game) {
 
 	var health;
 	var intox;
@@ -26,7 +26,7 @@ BasicGame.canada3 = function (game) {
 
 };
  
-BasicGame.canada3.prototype = {
+BasicGame.russia3.prototype = {
 	init: function(){
 		health = (hp/100)*192;
 		//health = health;
@@ -43,12 +43,15 @@ BasicGame.canada3.prototype = {
 		//health = BasicGame.hp;
 		//map = this.add.sprite(0,0,'road');
 		
-		tiles = this.add.tilemap('canadaThree');
+		tiles = this.add.tilemap('russiaThree');
 		
 		//console.log("Street?");
 		tiles.addTilesetImage('road1');
+		tiles.addTilesetImage('snowcrap');
+		tiles.addTilesetImage('kremlin');
+		tiles.addTilesetImage('basil');
 		
-		tiles.addTilesetImage('treetiles');
+		//tiles.addTilesetImage('treetiles');
 		//tiles.addTilesetImage('town');
 		//tiles.addTilesetImage('invisible');
 		//tiles.addTilesetImage('fence');
@@ -108,7 +111,6 @@ BasicGame.canada3.prototype = {
 		healthBar.fixedToCamera = true;
 		
 		finish = this.add.sprite(30,2400,'finish');
-		finish.anchor.setTo(.5,.5);
 		finish.angle = 90;
 		//finish.scale.x = 1.65;
 		
