@@ -27,7 +27,7 @@ BasicGame.intro.prototype = {
 		bac = 0;
 		cash = 0;
 		console.log(hp);
-		this.game.state.start('russia3', true, false, hp, bac, cash);
+		this.game.state.start('sneak', true, false, hp, bac, cash);
 
 		//console.log("LEVEL ONE!");
 		//this.game.state.start('levelOne', true, false, hp, bac, cash);

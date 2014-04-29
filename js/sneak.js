@@ -15,21 +15,19 @@ BasicGame.sneak = function(game) {
 	var c1;
 	var c2;
 	var c3;
-	var content = [
-    " ",
+	var content;/* = [
     "Bear you need to get into Canada",
     "Avoid the lights and Mounties",
-	"Use the trees to hide ",
-	" ",
-    
-	];
-	var t = 0;
+	"Use the trees to hide "
+	];*/
+	var t;
 	var thing;
 	var s;
 	var index;
-	var line = '';
+	var line;
 	var music;
 	var musicf;
+	var textscroller;
 };
 
 BasicGame.sneak.prototype = {
@@ -42,8 +40,10 @@ BasicGame.sneak.prototype = {
 	},
 	
 	create: function(){
+		t=0;
 		index = 0;
-		var content = [
+		line= '';
+		content = [
 		" ",
 		"Bear you need to get into Canada",
 		"Avoid the lights and Mounties",
@@ -144,28 +144,31 @@ BasicGame.sneak.prototype = {
 		var style = { font: "30pt Courier", fill: "#19cb65", stroke: "#111111", strokeThickness: 6 };
 		s = this.add.text(32, 550, '', style);
 		t = this.time.now + 80;
-		console.log(content[1]);
-		screentext = this.add.text(120, 600, content[1]);
+		//textscroller=this.time.events.loop(400, this.texter, this);
+		//treeevent=game.time.events.loop(game.rnd.integerInRange(800,1200), createTree, this);
+		//lineevent=game.time.events.loop(400, createLine, this);
 	},
+
 	collisionHandler: function(be, li) {
 		if (!this.physics.overlap(bear, trees)){
-			//var msg = "Got caught\n No money";
-			//var sty = { font: "bold 25pt Arial", fill: "#000000", align: "center", stroke: "#ff0000", strokeThickness: 2 };
-			//mm = this.add.text(this.world.centerX, this.world.centerY, msg, sty);
-			//mm.anchor.setTo(0.5, 0.5);
-			//this.add.tween(mm).to( { alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
+			var msg = "Got caught\n No money";
+			var sty = { font: "bold 25pt Arial", fill: "#000000", align: "center", stroke: "#ff0000", strokeThickness: 2 };
+			mm = this.add.text(this.world.centerX, this.world.centerY, msg, sty);
+			mm.anchor.setTo(0.5, 0.5);
+			this.add.tween(mm).to( { alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
 			be.kill();
-			//this.physics.gravity.y=200;
-			this.proceed();
+			this.physics.gravity.y=200;
+			this.time.events.loop(3000, this.proceed, this);
+			//this.proceed();
 		}
 	},
+	
    update: function() {
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)){
 			console.log("x = " + bear.body.x + " y = " + bear.body.y);
 		}
-		if (this.time.now - thing > t && index < content.length){
+		if (this.time.now > t && index < content.length){
 			//  get the next character in the line
-			console.log(content);
 			if (line.length < content[index].length)
 			{
 				line = content[index].substr(0, line.length + 1);
@@ -218,15 +221,15 @@ BasicGame.sneak.prototype = {
 		
 	   if (upKey.isDown&&(bear.body.y>40||(bear.body.x>482&&bear.body.x<500))){
 			if (bear.body.y<10){
-				//var msg = "Got that money";
+				var msg = "Got that money";
 				//console.log("TF");
-				//var sty = { font: "bold 25pt Arial", fill: "#111111", align: "center", stroke: "#ff0000", strokeThickness: 2 };
-				//mm = this.add.text(500, 100, msg, sty);
-				//mm.anchor.setTo(0.5, 0.5);
-				//this.add.tween(mm).to( { alpha: 0 }, 4000, Phaser.Easing.Linear.None, true);
-				//this.physics.gravity.y=200;
+				var sty = { font: "bold 25pt Arial", fill: "#111111", align: "center", stroke: "#ff0000", strokeThickness: 2 };
+				mm = this.add.text(500, 100, msg, sty);
+				mm.anchor.setTo(0.5, 0.5);
+				this.add.tween(mm).to( { alpha: 0 }, 4000, Phaser.Easing.Linear.None, true);
+				this.physics.gravity.y=200;
 				money += 100;
-				this.proceed();
+				this.time.events.loop(3000, this.proceed, this);
 			}
 			bear.animations.play('walk', 10);
 			bear.body.velocity.y=-100;
@@ -253,6 +256,7 @@ BasicGame.sneak.prototype = {
 	},
 	
 	proceed: function(){
+		this.physics.gravity.y=0;
 		next = 'can1'
 		console.log("STOP");
 		music.stop();
