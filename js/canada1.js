@@ -145,39 +145,75 @@ BasicGame.canada1.prototype = {
 			console.log("x = " + player.body.x + " y = " + player.body.y);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.ONE)){
+			music.stop();
+			dudes.removeAll();
+			player.destroy();
 			this.game.state.start('levelOne', true, false, health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.TWO)){
+			music.stop();
+			dudes.removeAll();
+			player.destroy();
 			this.game.state.start('levelTwo', true, false, health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.THREE)){
+			music.stop();
+			dudes.removeAll();
+			player.destroy();
 			this.game.state.start('levelThree', true, false, health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.FOUR)){
+			music.stop();
+			dudes.removeAll();
+			player.destroy();
 			this.game.state.start('canada1', true, false, health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.FIVE)){
+			music.stop();
+			dudes.removeAll();
+			player.destroy();
 			this.game.state.start('canada2', true, false, health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.SIX)){
+			music.stop();
+			dudes.removeAll();
+			player.destroy();
 			this.game.state.start('canada3', true, false, health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.SEVEN)){
+			music.stop();
+			dudes.removeAll();
+			player.destroy();
 			this.game.state.start('russia1', true, false, health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.EIGHT)){
+			music.stop();
+			dudes.removeAll();
+			player.destroy();
 			this.game.state.start('russia2', true, false, health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.NINE)){
+			music.stop();
+			dudes.removeAll();
+			player.destroy();
 			this.game.state.start('russia3', true, false, health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.U)){
+			music.stop();
+			dudes.removeAll();
+			player.destroy();
 			this.game.state.start('sneak', true, false, health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.I)){
+			music.stop();
+			dudes.removeAll();
+			player.destroy();
 			this.game.state.start('levelOne', true, false, health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.O)){
+			music.stop();
+			dudes.removeAll();
+			player.destroy();
 			this.game.state.start('levelOne', true, false, health, intox, money);
 		}
 		//Cops!!
