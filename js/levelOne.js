@@ -94,7 +94,7 @@ BasicGame.levelOne.prototype = {
 		
 		finish = this.add.sprite(3008,0,'finish');
 		
-		this.input.keyboard.addKeyCapture([ Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.SPACEBAR, Phaser.Keyboard.DOWN, Phaser.Keyboard.UP ]);
+		this.input.keyboard.addKeyCapture([ Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.SPACEBAR, Phaser.Keyboard.DOWN, Phaser.Keyboard.UP, Phaser.Keyboard.ONE,Phaser.Keyboard.TWO, Phaser.Keyboard.THREE,Phaser.Keyboard.FOUR,Phaser.Keyboard.FIVE,Phaser.Keyboard.SIX,Phaser.Keyboard.SEVEN,Phaser.Keyboard.EIGHT,Phaser.Keyboard.NINE,Phaser.Keyboard.U,Phaser.Keyboard.I,Phaser.Keyboard.O]);
     },
     
     update: function() {
@@ -128,6 +128,42 @@ BasicGame.levelOne.prototype = {
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)){
 			console.log("x = " + player.body.x + " y = " + player.body.y);
+		}
+		if (this.input.keyboard.justPressed(Phaser.Keyboard.ONE)){
+			this.game.state.start('levelOne', true, false, health, intox, money);
+		}
+		if (this.input.keyboard.justPressed(Phaser.Keyboard.TWO)){
+			this.game.state.start('levelTwo', true, false, health, intox, money);
+		}
+		if (this.input.keyboard.justPressed(Phaser.Keyboard.THREE)){
+			this.game.state.start('levelThree', true, false, health, intox, money);
+		}
+		if (this.input.keyboard.justPressed(Phaser.Keyboard.FOUR)){
+			this.game.state.start('canada1', true, false, health, intox, money);
+		}
+		if (this.input.keyboard.justPressed(Phaser.Keyboard.FIVE)){
+			this.game.state.start('canada2', true, false, health, intox, money);
+		}
+		if (this.input.keyboard.justPressed(Phaser.Keyboard.SIX)){
+			this.game.state.start('canada3', true, false, health, intox, money);
+		}
+		if (this.input.keyboard.justPressed(Phaser.Keyboard.SEVEN)){
+			this.game.state.start('russia1', true, false, health, intox, money);
+		}
+		if (this.input.keyboard.justPressed(Phaser.Keyboard.EIGHT)){
+			this.game.state.start('russia2', true, false, health, intox, money);
+		}
+		if (this.input.keyboard.justPressed(Phaser.Keyboard.NINE)){
+			this.game.state.start('russia3', true, false, health, intox, money);
+		}
+		if (this.input.keyboard.justPressed(Phaser.Keyboard.U)){
+			this.game.state.start('sneak', true, false, health, intox, money);
+		}
+		if (this.input.keyboard.justPressed(Phaser.Keyboard.I)){
+			this.game.state.start('levelOne', true, false, health, intox, money);
+		}
+		if (this.input.keyboard.justPressed(Phaser.Keyboard.O)){
+			this.game.state.start('levelOne', true, false, health, intox, money);
 		}
 		//Cops!!
 		cop1.rotation = this.physics.moveToObject(cop1, player, 300, 300, 300);
