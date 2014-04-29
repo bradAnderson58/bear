@@ -201,7 +201,8 @@ BasicGame.canada3.prototype = {
 	goLevel: function(){
 		//this.time.events.remove(dudeEvent);
 		dudes.removeAll();
-		next = "u3";	
+		next = "rus1";	
+		money += 150;
 		this.game.state.start('sneak', health, intox, money, next);
 	},
 	addDudes: function(){

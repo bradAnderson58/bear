@@ -205,6 +205,7 @@ BasicGame.russia3.prototype = {
 		//this.time.events.remove(dudeEvent);
 		dudes.removeAll();
 		next = "u3";	
+		money += 150;
 		this.game.state.start('sneak', health, intox, money, next);
 	},
 	addDudes: function(){

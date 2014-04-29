@@ -58,13 +58,13 @@ BasicGame.store.prototype = {
 		if (next == "u2"){ this.game.state.start('levelTwo', health, intox, money);}
 		else if(next == "u3"){ this.game.state.start('levelThree', health, intox, money);}
 		
-		else if (next == "can1"){this.game.state.start('levelFour', health, intox, money);}
-		else if (next == "can2") {this.game.state.start('levelFive', health, intox, money);}
-		else if (next == "can3"){ this.game.state.start('levelSix', health, intox, money);}
+		else if (next == "can1"){this.game.state.start('canada1', health, intox, money);}
+		else if (next == "can2") {this.game.state.start('canada2', health, intox, money);}
+		else if (next == "can3"){ this.game.state.start('canada3', health, intox, money);}
 		
-		else if (next == "rus1"){ this.game.state.start('levelSeven', health, intox, money);}
-		else if (next == "rus2"){ this.game.state.start('levelEight', health, intox, money);}
-		else if (next == "rus3"){ this.game.state.start('levelNine', health, intox, money);}
+		else if (next == "rus1"){ this.game.state.start('russia1', health, intox, money);}
+		else if (next == "rus2"){ this.game.state.start('russia2', health, intox, money);}
+		else if (next == "rus3"){ this.game.state.start('russia3', health, intox, money);}
 	},
 
 	buyCoffee: function() {
