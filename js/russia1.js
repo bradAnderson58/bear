@@ -204,7 +204,7 @@ BasicGame.russia1.prototype = {
 		//this.time.events.remove(dudeEvent);
 		dudes.removeAll();
 		next = "u3";	
-		this.game.state.start('sneak', health, intox, money, next);
+		this.game.state.start('store', health, intox, money, next);
 	},
 	addDudes: function(){
 		var newGuy = dudes.create(1299, 6139, 'dude');

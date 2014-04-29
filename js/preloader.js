@@ -29,6 +29,8 @@ BasicGame.preloader.prototype = {
 		
 		this.load.image('mainroad', 'ART/mapTiled.png');
 		this.load.image('russia1pic', 'ART/russia1.png');
+		this.load.image('russia2pic', 'ART/russia2.png');
+		this.load.image('russia3pic', 'ART/russia3.png');
 		this.load.image('houses', 'ART/houses.png');
 		this.load.image('town', 'ART/town.png');
 		this.load.image('invisible', 'ART/invisible.png');

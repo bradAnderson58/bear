@@ -69,11 +69,12 @@ BasicGame.russia3.prototype = {
 		//dudeEvent = this.time.events.loop(this.rnd.integerInRange(1000,4000),this.dudeHandler,this);
 		//tiles.setCollisionByExclusion([0]);
 		//layer = tiles.createLayer('Tile Layer 1');
+		map = this.add.sprite(0,0,'russia3pic');
 		music = this.add.audio('music');
 		music.play();
 		
-		player = this.add.sprite(25550,5000,'car');
-		//player = this.add.sprite(200,2400,'car');
+		player = this.add.sprite(25300,160,'car');
+		//player = this.add.sprite(11780,2970,'car');
 		this.camera.follow(player);
 		player.anchor.setTo(0.5, 0.5);
 		player.angle = (180);
@@ -110,9 +111,9 @@ BasicGame.russia3.prototype = {
 		//console.log(hp);
 		healthBar.fixedToCamera = true;
 		
-		finish = this.add.sprite(30,2400,'finish');
-		finish.angle = 90;
-		//finish.scale.x = 1.65;
+		finish = this.add.sprite(11775,2750,'finish');
+		//finish.angle = 90;
+		finish.scale.x = 1.65;
 		
 		this.input.keyboard.addKeyCapture([ Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.SPACEBAR, Phaser.Keyboard.DOWN, Phaser.Keyboard.UP ]);
     },
