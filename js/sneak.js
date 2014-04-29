@@ -259,7 +259,7 @@ BasicGame.sneak.prototype = {
 	proceed: function(){
 		this.physics.gravity.y=0;
 		next = 'can1'
-		console.log("STOP");
+		//console.log("STOP");
 		music.stop();
 		musicf.stop();
 		this.time.events.remove(whatever);

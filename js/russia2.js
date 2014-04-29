@@ -28,10 +28,10 @@ BasicGame.russia2 = function (game) {
  
 BasicGame.russia2.prototype = {
 	init: function(){
-		health = (hp/100)*192;
+		health = (health/100)*192;
 		//health = health;
-		intox = bac;
-		money = cash;
+		intox = intox;
+		money = money;
 	},
     create: function() {
 		console.log(intox);
