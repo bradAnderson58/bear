@@ -15,6 +15,7 @@ BasicGame.sneak = function(game) {
 	var c1;
 	var c2;
 	var c3;
+	var whatever;
 	var content;/* = [
     "Bear you need to get into Canada",
     "Avoid the lights and Mounties",
@@ -33,10 +34,10 @@ BasicGame.sneak = function(game) {
 BasicGame.sneak.prototype = {
 
 	init: function(){
-		health = (hp/100)*192;
+		health = (health/100)*192;
 		//health = health;
-		intox = bac;
-		money = cash;
+		intox = intox;
+		money = money;
 	},
 	
 	create: function(){
@@ -158,7 +159,7 @@ BasicGame.sneak.prototype = {
 			this.add.tween(mm).to( { alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
 			be.kill();
 			this.physics.gravity.y=200;
-			this.time.events.loop(3000, this.proceed, this);
+			whatever = this.time.events.loop(3000, this.proceed, this);
 			//this.proceed();
 		}
 	},
@@ -229,7 +230,7 @@ BasicGame.sneak.prototype = {
 				this.add.tween(mm).to( { alpha: 0 }, 4000, Phaser.Easing.Linear.None, true);
 				this.physics.gravity.y=200;
 				money += 100;
-				this.time.events.loop(3000, this.proceed, this);
+				whatever = this.time.events.loop(3000, this.proceed, this);
 			}
 			bear.animations.play('walk', 10);
 			bear.body.velocity.y=-100;
@@ -261,6 +262,7 @@ BasicGame.sneak.prototype = {
 		console.log("STOP");
 		music.stop();
 		musicf.stop();
+		this.time.events.remove(whatever);
 		this.game.state.start('store', health, intox, money, next);
 	},
 render: function() {

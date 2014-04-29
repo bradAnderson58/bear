@@ -26,9 +26,9 @@ BasicGame.levelOne = function (game) {
  
 BasicGame.levelOne.prototype = {
 	init: function(){
-		health = hp;
-		intox = bac;
-		money = cash;
+		health = health;
+		intox = intox;
+		money = money;
 	},
     create: function() {
 		this.world.setBounds(0, 0, 3200, 1600);
