@@ -275,7 +275,7 @@ BasicGame.canada3.prototype = {
 		dudes.removeAll();
 		next = "rus1";	
 		money += 150;
-		this.game.state.start('sneak', health, intox, money, next);
+		this.game.state.start('trucker', health, intox, money, next);
 	},
 	addDudes: function(){
 		var newGuy = dudes.create(1299, 6139, 'dude');

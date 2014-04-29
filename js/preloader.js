@@ -81,6 +81,19 @@ BasicGame.preloader.prototype = {
 		this.load.image('fenceS','assets/fence.png');
 		this.load.audio('musicS', 'music/mgs.mp3');
 		this.load.audio('musicf', 'music/mgsfull.mp3');
+		
+		//Trucker Game Stuff
+		this.load.image('back','assets/back.png');
+		//game.load.image('player', 'assets/player.png');
+		this.load.image('top', 'assets/top.png');
+		this.load.image('line', 'assets/line.png');
+		this.load.image('truck', 'assets/truck.png');
+		this.load.image('grade', 'assets/grade.png');
+		this.load.audio('musicT', 'music/TBS.mp3');
+		//game.load.spritesheet('carss','assets/carss.png',62,94);
+		this.load.spritesheet('carss','assets/car2.png',64,92);
+		this.load.spritesheet('bearT', 'assets/bear.png',128,96);
+		this.load.spritesheet('tree', 'assets/tre.png',254,254);
 	},
 
 	create: function() {
