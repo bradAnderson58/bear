@@ -114,11 +114,12 @@ BasicGame.preloader.prototype = {
 	},
 	
 	update: function(){
-	
-		if (this.ready == false){
+		
+		if (this.cache.isSoundDecoded('fightMusic') && this.ready == false){
 			this.ready = true;
 			this.game.state.start('intro');
 		}
+		
 	}
 	
 };

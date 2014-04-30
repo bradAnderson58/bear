@@ -23,24 +23,24 @@ BasicGame.putinFight = function(game){
 	var fightStarted = false;
 	var canHit = true;
 	var putinSide;
-
+	var bgm
 	var punchSnd;
 };
 
 BasicGame.putinFight.prototype = {
 	create: function() {
 		bearHP = 100;
-		putinHP = 100;
+		putinHP = -100;
 		time = 120;
 		fightStarted = false;
 		canHit = true;
-		var bgm = this.add.audio("fightMusic");
-		bgm.play("",0,1,true,false);
+		bgm = this.add.audio("fightMusic");
+		bgm.play();
 	
 		punchSnd = this.add.audio("punch");
 	
 		background = this.add.sprite(0,0, "kremlinP");
-		background.scale.setTo(0.5, 0.5);
+		background.scale.setTo(0.6, 0.5);
 	 
 		bearPre = this.add.sprite(-500, 70, "bearPrefight");
 	 
@@ -51,13 +51,13 @@ BasicGame.putinFight.prototype = {
 	
 		roundNum = this.add.text(-500, 200, "Round 1", {font: "56pt Impact", fill: "#fff", stroke: "#000", strokeThickness: "8"});
 	
-		this.time.events.add(Phaser.Timer.SECOND * 0.5, this.showBear, this);
-		this.time.events.add(Phaser.Timer.SECOND * 1, this.showPutin, this);
-		this.time.events.add(Phaser.Timer.SECOND * 2, this.showVs, this);
+		t1 = this.time.events.add(Phaser.Timer.SECOND * 0.5, this.showBear, this);
+		t2 = this.time.events.add(Phaser.Timer.SECOND * 1, this.showPutin, this);
+		t3 = this.time.events.add(Phaser.Timer.SECOND * 2, this.showVs, this);
 	 
-		this.time.events.add(Phaser.Timer.SECOND * 4, this.hideAll, this);
+		t4 = this.time.events.add(Phaser.Timer.SECOND * 4, this.hideAll, this);
 	 
-		this.time.events.add(Phaser.Timer.SECOND * 4.5, this.createAll, this);
+		t5 = this.time.events.add(Phaser.Timer.SECOND * 4.5, this.createAll, this);
 	
 		cursors = this.input.keyboard.createCursorKeys();
 	},
@@ -69,9 +69,11 @@ BasicGame.putinFight.prototype = {
 			bearHPBar.crop.width = (bearHP / 100) * bearHPBar.width;
 			this.add.tween(bear).to({y: 700}, 250, Phaser.Easing.Linear.In, true);
 			fightStarted = false;
+			console.log("Losing?");
+			losingTheGame = this.time.events.add(Phaser.Timer.SECOND * 1,this.gameOver,this);
 		}
 	
-		if (putinHP == 0) {
+		if (putinHP >= 0) {
 			putin.anchor.setTo(0.5,1);
 			putin.frame = 2;
 			putinHP = -0.01;
@@ -79,12 +81,12 @@ BasicGame.putinFight.prototype = {
 			fightStarted = false;
 			this.add.tween(putin).to({angle: 90}, 250, Phaser.Easing.Linear.In, true);
 			this.add.tween(putin).to({y: putin.y+70}, 250, Phaser.Easing.Linear.In, true);
-			this.time.events.add(Phaser.Timer.SECOND * 1, win, this);
+			t7 = this.time.events.add(Phaser.Timer.SECOND * 1, this.win, this);
 		}
 
 		if (fightStarted) {
 			bearHPBar.crop.width = (bearHP / 100) * bearHPBar.width;
-			putinHPBar.crop.width = (putinHP / 100) * putinHPBar.width;
+			putinHPBar.crop.width = (putinHP / 100) * putinHPBar.width * -1;
 		
 			if(this.input.keyboard.justPressed(Phaser.Keyboard.A)) {
 				if(canHit && Phaser.Math.fuzzyEqual(bear.x, putin.x, 50)) {//&& !putin.animations.getAnimation("leftHook").isPlaying) {
@@ -92,11 +94,11 @@ BasicGame.putinFight.prototype = {
 					punchSnd.play("",0,1,false,false);
 					canHit = false;
 					bear.frame = 0;
-					this.time.events.add(Phaser.Timer.SECOND * 0.1, this.resetHit, this);
+					t8 = this.time.events.add(Phaser.Timer.SECOND * 0.1, this.resetHit, this);
 				}else{
 					//punchSnd.play("", 0, 1, false, false);
 					bear.frame = 0;
-					this.time.events.add(Phaser.Timer.SECOND * 0.1, this.resetHit, this);
+					t9 = this.time.events.add(Phaser.Timer.SECOND * 0.1, this.resetHit, this);
 				}
 			}
 			else if(this.input.keyboard.justPressed(Phaser.Keyboard.S)) {
@@ -105,16 +107,16 @@ BasicGame.putinFight.prototype = {
 					punchSnd.play("",0,1,false,false);
 					canHit = false;
 					bear.frame = 2;
-					this.time.events.add(Phaser.Timer.SECOND * 0.1, this.resetHit, this);
+					t10 = this.time.events.add(Phaser.Timer.SECOND * 0.1, this.resetHit, this);
 				}else{
 					bear.frame = 2;
-					this.time.events.add(Phaser.Timer.SECOND * 0.1, this.resetHit, this);
+					t11 = this.time.events.add(Phaser.Timer.SECOND * 0.1, this.resetHit, this);
 				}
 			
 			}
 		
 			if(this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-				if(bear.x < 650) bear.x += 10;
+				if(bear.x < 1050) bear.x += 10;
 			}
 			if(this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
 				if(bear.x > 200) bear.x -= 10;
@@ -167,15 +169,15 @@ BasicGame.putinFight.prototype = {
 	
 		
 		this.add.sprite(678, 19, "healthbarBack");
-		putinHPBar = this.add.sprite(929, 20, "healthbarPutin");
+		putinHPBar = this.add.sprite(678, 20, "healthbarPutin");
 		putinHPBar.cropEnabled = true;
 		putinHPBar.crop.width = (putinHP / 100) * putinHPBar.width;
 		
 	
 		bearName = this.add.text(83, 65, "Bear", {font: "16pt Impact", fill: "#fff", stroke: "#000", strokeThickness: "1"});
-		putinName = this.add.text(458, 65, "Vlad the Hammer", {font: "16pt Impact", fill: "#fff", stroke: "#000", strokeThickness: "1"});
+		putinName = this.add.text(729, 65, "Vlad the Hammer", {font: "16pt Impact", fill: "#fff", stroke: "#000", strokeThickness: "1"});
 		console.log("Doesnt");
-		this.time.events.add(Phaser.Timer.SECOND * 0.5, this.showRound, this);
+		t12 = this.time.events.add(Phaser.Timer.SECOND * 0.5, this.showRound, this);
 	},
 
 	subtractTime: function() {
@@ -191,40 +193,40 @@ BasicGame.putinFight.prototype = {
 			var hit = false;
 			if (putinSide <= 0.25 && putinSide >= 0) {
 				putin.animations.play("rightHook");
-				this.time.events.add(Phaser.Timer.SECOND * 0.2, this.resetPutin, this, 2);
+				t13 = this.time.events.add(Phaser.Timer.SECOND * 0.2, this.resetPutin, this, 2);
 				if(Phaser.Math.fuzzyEqual(bear.x, putin.x, 50) && putin.animations.getAnimation("rightHook").isPlaying) {
-					bearHP -= 10;
+					bearHP -= 40;
 				}
 			}
 			else if (putinSide > 0.25 && putinSide < 0.5) {
 				putin.animations.play("leftHook");
-				this.time.events.add(Phaser.Timer.SECOND * 0.2, this.resetPutin, this, 2);
+				t14 = this.time.events.add(Phaser.Timer.SECOND * 0.2, this.resetPutin, this, 2);
 				if(Phaser.Math.fuzzyEqual(bear.x, putin.x, 50) && putin.animations.getAnimation("leftHook").isPlaying) {
-					bearHP -= 10;
+					bearHP -= 30;
 				}
 			}
 			else if (putinSide >= 0.5 && putinSide < 0.75) {
 				putin.animations.play("rightHook2");
-				this.time.events.add(Phaser.Timer.SECOND * 0.2, this.resetPutin, this, 7);
+				t15 = this.time.events.add(Phaser.Timer.SECOND * 0.2, this.resetPutin, this, 7);
 				if(Phaser.Math.fuzzyEqual(bear.x, putin.x, 50) && putin.animations.getAnimation("rightHook2").isPlaying) {
-					bearHP -= 10;
+					bearHP -= 40;
 				}
 			}
 			else if (putinSide >=0.75){
 				putin.animations.play("leftHook2");
-				this.time.events.add(Phaser.Timer.SECOND * 0.2, this.resetPutin, this, 7);
+				t16 = this.time.events.add(Phaser.Timer.SECOND * 0.2, this.resetPutin, this, 7);
 				if(Phaser.Math.fuzzyEqual(bear.x, putin.x, 50) && putin.animations.getAnimation("leftHook2").isPlaying) {
-					bearHP -= 10;
+					bearHP -= 30;
 				}
 			}
 		
-			this.time.events.add(Phaser.Timer.SECOND * 1.25, this.putinPunch, this);
+			t17 = this.time.events.add(Phaser.Timer.SECOND * 1.25, this.putinPunch, this);
 		}
 	},
 
 	resetHit: function() {
 		bear.frame = 1;
-		this.time.events.add(Phaser.Timer.SECOND * 2, this.punchCooldown, true);
+		t18 = this.time.events.add(Phaser.Timer.SECOND * 2, this.punchCooldown, true);
 	},
 	punchCooldown: function() {
 		canHit = true;
@@ -237,33 +239,61 @@ BasicGame.putinFight.prototype = {
 	putinMove: function() {
 		if (fightStarted) {
 			this.add.tween(putin).to({x: bear.x}, 750, Phaser.Easing.None, true);
-			this.time.events.add(Phaser.Timer.SECOND * 2, this.putinMove, this);
+			t19 = this.time.events.add(Phaser.Timer.SECOND * 2, this.putinMove, this);
 		}
 	},
 
 	showRound: function() {
 		this.add.tween(roundNum).to({x: 315}, 250, Phaser.Easing.Linear.out, true);
-		this.time.events.add(Phaser.Timer.SECOND * 1, this.startFight, this);
+		t20 = this.time.events.add(Phaser.Timer.SECOND * 1, this.startFight, this);
 	},
 
 	startFight: function() {
 		roundNum.content = "FIGHT!";
 		var t = this.add.tween(roundNum).to({x: 315}, 1000, Phaser.Easing.Linear.out, true)
-		.to({x: 1000}, 250, Phaser.Easing.Linear.out, true)
+		.to({x: 1200}, 250, Phaser.Easing.Linear.out, true)
 		.start();
 	
-		timeText = this.add.text(364, 20, time, {font: "32pt Impact", fill: "#fff", stroke: "#000", strokeThickness: "2"});
+		timeText = this.add.text(494, 20, time, {font: "32pt Impact", fill: "#fff", stroke: "#000", strokeThickness: "2"});
 	
-		this.time.events.loop(Phaser.Timer.SECOND * 1, this.subtractTime, this);
+		t21 = this.time.events.loop(Phaser.Timer.SECOND * 1, this.subtractTime, this);
 	
-		this.time.events.loop(Phaser.Timer.SECOND * 2, this.putinMove, this);
-		this.time.events.add(Phaser.Timer.SECOND * 1.25, this.putinPunch, this);
+		t22 = this.time.events.loop(Phaser.Timer.SECOND * 2, this.putinMove, this);
+		t23 = this.time.events.add(Phaser.Timer.SECOND * 1.25, this.putinPunch, this);
 	
 		fightStarted = true;
 	},
 
 	gameOver: function() {
 		this.add.tween(bear).to({direction: 0}, 500, Phaser.Easing.Linear.In, true);
+		this.time.events.remove(losingTheGame);
+		this.time.events.remove(t1);
+		this.time.events.remove(t2);
+		this.time.events.remove(t3);
+		this.time.events.remove(t4);
+		this.time.events.remove(t5);
+		//this.time.events.remove(t6);
+		//this.time.events.remove(t7);
+		//this.time.events.remove(t8);
+		//this.time.events.remove(t9);
+		//this.time.events.remove(t10);
+		//this.time.events.remove(t11);
+		this.time.events.remove(t12);
+		//this.time.events.remove(t13);
+		//this.time.events.remove(t14);
+		//this.time.events.remove(t15);
+		this.time.events.remove(t16);
+		this.time.events.remove(t17);
+		//this.time.events.remove(t18);
+		this.time.events.remove(t19);
+		this.time.events.remove(t20);
+		this.time.events.remove(t21);
+		this.time.events.remove(t22);
+		this.time.events.remove(t23);
+		//this.time.events.remove(t24);
+		bgm.stop();
+		this.game.state.start('levelOne');
+
 	},
 
 	win: function() {
@@ -272,7 +302,7 @@ BasicGame.putinFight.prototype = {
 		.to({y: 300}, 2000, Phaser.Easing.None, true)
 		.to({y: 700}, 2000, Phaser.Easing.None, true)
 		.start();
-		this.time.events.add(Phaser.Timer.SECOND * 5.75, this.showCredits, this);
+		t24 = this.time.events.add(Phaser.Timer.SECOND * 5.75, this.showCredits, this);
 	},
 
 	showCredits: function() {
