@@ -282,7 +282,7 @@ BasicGame.putinFight.prototype = {
 		//this.time.events.remove(t13);
 		//this.time.events.remove(t14);
 		//this.time.events.remove(t15);
-		this.time.events.remove(t16);
+		//this.time.events.remove(t16);
 		this.time.events.remove(t17);
 		//this.time.events.remove(t18);
 		this.time.events.remove(t19);
@@ -292,7 +292,10 @@ BasicGame.putinFight.prototype = {
 		this.time.events.remove(t23);
 		//this.time.events.remove(t24);
 		bgm.stop();
-		this.game.state.start('levelOne');
+		health = 192;
+		intox = 0;
+		money = 0;
+		this.game.state.start('levelOne', health, intox, money);
 
 	},
 

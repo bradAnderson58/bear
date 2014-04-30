@@ -208,13 +208,13 @@ BasicGame.canada2.prototype = {
 			music.stop();
 			dudes.removeAll();
 			player.destroy();
-			this.game.state.start('levelOne', true, false, health, intox, money);
+			this.game.state.start('trucker', true, false, health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.O)){
 			music.stop();
 			dudes.removeAll();
 			player.destroy();
-			this.game.state.start('levelOne', true, false, health, intox, money);
+			this.game.state.start('putinFight');
 		}
 		//Cops!!
 		//cop1.rotation = this.physics.moveToObject(cop1, player, 300, 300, 300);
