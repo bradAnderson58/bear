@@ -94,6 +94,18 @@ BasicGame.preloader.prototype = {
 		this.load.spritesheet('carss','assets/car2.png',64,92);
 		this.load.spritesheet('bearT', 'assets/bear.png',128,96);
 		this.load.spritesheet('tree', 'assets/tre.png',254,254);
+		
+		//Putin Game Stuff
+		this.load.image("kremlinP", "kremlin1_thumb.jpg");
+		this.load.image("bearPrefight", "bearprefight.png");
+		this.load.image("putinPrefight", "putinprefight.png");
+		this.load.image("healthbarBear", "healthbar.png");
+		this.load.image("healthbarPutin", "healthbar.png");
+		this.load.image("healthbarBack", "healthbarBack.png");
+		this.load.spritesheet("bearP", "bearsprite.png", 240, 175);
+		this.load.spritesheet("putin", "putinsprite2.png", 250, 600);
+		this.load.audio("fightMusic", "rockytheme.mp3");
+		this.load.audio("punch", "punch.wav");
 	},
 
 	create: function() {
