@@ -94,10 +94,16 @@ BasicGame.trucker.prototype = {
 		truck.anchor.setTo(.5,.5);
 		truck.scale.setTo(1.2,1.2);
 		truck.body.allowGravity=false;
+		//mountains.fixToCamera = true;
+		//this.camera.setPosition(0,0);
+		this.camera.follow(back);
+		//this.camera.x = 0;
+		//this.camera.x -= 2000;
+		//this.camera.y = 0;
 		
 		var text = "BEAR hit cops \n earn money";
 		var style = { font: "bold 40pt Arial", fill: "#ffffff", align: "center", stroke: "#258acc", strokeThickness: 8 };
-		s = this.add.text(this.world.centerX, this.world.centerY, text, style);
+		s = this.add.text(512, 300, text, style);
 		s.anchor.setTo(0.5, 0.5);
 		this.add.tween(s).to( { alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
 		//game.time.events.add(1000, fadePicture, this);
@@ -114,7 +120,7 @@ BasicGame.trucker.prototype = {
 
 	over: function() {
 		var style = { font: "bold 40pt Arial", fill: "#ffffff", align: "center", stroke: "#258acc", strokeThickness: 8 };
-		this.add.text(this.world.centerX-120, this.world.centerY-50, "Round Over", style);
+		this.add.text(512, 300, "Round Over", style);
 
 
 		this.time.events.remove(carevent);
@@ -268,12 +274,7 @@ BasicGame.trucker.prototype = {
 	
 	collisionHandler: function(t,c) {
 		 if (c.name==='moneycar'){
-			money=money+1;
-			//var msg = "BEAR only hit cops\n-$";
-			//var sty = { font: "bold 25pt Arial", fill: "#000000", align: "center", stroke: "#ff0000", strokeThickness: 2 };
-			//mm = game.add.text(game.world.centerX, game.world.centerY, msg, sty);
-			//mm.anchor.setTo(0.5, 0.5);
-			//game.add.tween(mm).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
+			money=money+.5;
 			if (c.health==0){
 				c.body.velocity.x=this.rnd.integerInRange(400, 600);
 				c.body.allowRotation=true;
@@ -298,7 +299,7 @@ BasicGame.trucker.prototype = {
 			money=money-.5;
 			var msg = "BEAR only hit cops\n-$";
 			var sty = { font: "bold 25pt Arial", fill: "#000000", align: "center", stroke: "#ff0000", strokeThickness: 2 };
-			mm = this.add.text(this.world.centerX, this.world.centerY, msg, sty);
+			mm = this.add.text(512, 300, msg, sty);
 			mm.anchor.setTo(0.5, 0.5);
 			this.add.tween(mm).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
 			if (c.health==0){

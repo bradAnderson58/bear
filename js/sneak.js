@@ -230,6 +230,8 @@ BasicGame.sneak.prototype = {
 				this.add.tween(mm).to( { alpha: 0 }, 4000, Phaser.Easing.Linear.None, true);
 				this.physics.gravity.y=200;
 				money += 100;
+				bear.body.y = 1000;
+				bear.destroy();
 				whatever = this.time.events.loop(3000, this.proceed, this);
 			}
 			bear.animations.play('walk', 10);
