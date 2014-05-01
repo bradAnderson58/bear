@@ -154,67 +154,67 @@ BasicGame.russia3.prototype = {
 			music.stop();
 			dudes.removeAll();
 			player.destroy();
-			this.game.state.start('levelOne', true, false, health, intox, money);
+			this.game.state.start('levelOne', health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.TWO)){
 			music.stop();
 			dudes.removeAll();
 			player.destroy();
-			this.game.state.start('levelTwo', true, false, health, intox, money);
+			this.game.state.start('levelTwo', health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.THREE)){
 			music.stop();
 			dudes.removeAll();
 			player.destroy();
-			this.game.state.start('levelThree', true, false, health, intox, money);
+			this.game.state.start('levelThree', health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.FOUR)){
 			music.stop();
 			dudes.removeAll();
 			player.destroy();
-			this.game.state.start('canada1', true, false, health, intox, money);
+			this.game.state.start('canada1', health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.FIVE)){
 			music.stop();
 			dudes.removeAll();
 			player.destroy();
-			this.game.state.start('canada2', true, false, health, intox, money);
+			this.game.state.start('canada2', health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.SIX)){
 			music.stop();
 			dudes.removeAll();
 			player.destroy();
-			this.game.state.start('canada3', true, false, health, intox, money);
+			this.game.state.start('canada3', health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.SEVEN)){
 			music.stop();
 			dudes.removeAll();
 			player.destroy();
-			this.game.state.start('russia1', true, false, health, intox, money);
+			this.game.state.start('russia1', health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.EIGHT)){
 			music.stop();
 			dudes.removeAll();
 			player.destroy();
-			this.game.state.start('russia2', true, false, health, intox, money);
+			this.game.state.start('russia2', health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.NINE)){
 			music.stop();
 			dudes.removeAll();
 			player.destroy();
-			this.game.state.start('russia3', true, false, health, intox, money);
+			this.game.state.start('russia3', health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.U)){
 			music.stop();
 			dudes.removeAll();
 			player.destroy();
-			this.game.state.start('sneak', true, false, health, intox, money);
+			this.game.state.start('sneak', health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.I)){
 			music.stop();
 			dudes.removeAll();
 			player.destroy();
-			this.game.state.start('trucker', true, false, health, intox, money);
+			this.game.state.start('trucker', health, intox, money);
 		}
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.O)){
 			music.stop();
@@ -227,7 +227,7 @@ BasicGame.russia3.prototype = {
 		
     },
 	collisionHandler: function(){
-		//health -= 1.92;
+		health -= 1.92;
 		healthBar.cameraOffset.x -= 1.92;
 		/*amount += .96;
 		healthBar = this.add.sprite(1000, amount, 'bar');
@@ -278,7 +278,7 @@ BasicGame.russia3.prototype = {
 		dudes.removeAll();
 		next = "u3";	
 		money += 150;
-		this.game.state.start('sneak', health, intox, money, next);
+		this.game.state.start('putinFight', health, intox, money, next);
 	},
 	addDudes: function(){
 		var newGuy = dudes.create(1299, 6139, 'dude');

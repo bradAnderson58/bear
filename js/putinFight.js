@@ -41,6 +41,7 @@ BasicGame.putinFight.prototype = {
 	
 		background = this.add.sprite(0,0, "kremlinP");
 		background.scale.setTo(0.6, 0.5);
+		this.camera.follow(background);
 	 
 		bearPre = this.add.sprite(-500, 70, "bearPrefight");
 	 
