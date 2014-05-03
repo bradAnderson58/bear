@@ -1,4 +1,4 @@
-
+//created variables for the game
 BasicGame.store = function (game) {
 
 	var background;
@@ -11,6 +11,7 @@ BasicGame.store = function (game) {
 };
 
 BasicGame.store.prototype = {
+	//bringing in health intox and money along with a variable for the next level
 	init: function(){
 		health = (health/192)*100;
 		//health = health;
@@ -18,6 +19,7 @@ BasicGame.store.prototype = {
 		money = money;
 		next =next;
 	},
+	//laying out the sprites for the store
 	create: function(){
 		console.log(next);
 		background = this.add.sprite(0, 0, "store");
@@ -38,11 +40,11 @@ BasicGame.store.prototype = {
 		
 		exit = this.add.button(850, 400, "receipt", this.checkOut, 0, 1, 0);
 	},
-
+//updaing the text
 	update: function() {
 		moneyText.content =  "MONEY:\n $"+money+"\nBAC: "+intox+"\nHP: "+health;
 	},
-	
+	//buying beer for more health
 	buyBeer: function() {
 		if (money >= 20){
 			money -= 20;
@@ -54,6 +56,7 @@ BasicGame.store.prototype = {
 			}
 		}
 	},
+	//checking out and moving on to the next level
 	checkOut: function(){
 		if (next == "u2"){ this.game.state.start('levelTwo', health, intox, money);}
 		else if(next == "u3"){ this.game.state.start('levelThree', health, intox, money);}
@@ -66,7 +69,7 @@ BasicGame.store.prototype = {
 		else if (next == "rus2"){ this.game.state.start('russia2', health, intox, money);}
 		else if (next == "rus3"){ this.game.state.start('russia3', health, intox, money);}
 	},
-
+	//buying coffee to decrease bac
 	buyCoffee: function() {
 		if(money >= 100) {
 			money -= 100;

@@ -1,5 +1,5 @@
 
-
+//setting up the variables for sneak
 BasicGame.sneak = function(game) {
 
 	var trees;
@@ -32,14 +32,14 @@ BasicGame.sneak = function(game) {
 };
 
 BasicGame.sneak.prototype = {
-
+//bringing in outside variables
 	init: function(){
 		health = (health/100)*192;
 		//health = health;
 		intox = intox;
 		money = money;
 	},
-	
+	//setting up the game and all sprites/animations
 	create: function(){
 		t=0;
 		index = 0;
@@ -149,7 +149,7 @@ BasicGame.sneak.prototype = {
 		//treeevent=game.time.events.loop(game.rnd.integerInRange(800,1200), createTree, this);
 		//lineevent=game.time.events.loop(400, createLine, this);
 	},
-
+//collisions between lights/mounties and the bear
 	collisionHandler: function(be, li) {
 		if (!this.physics.overlap(bear, trees)){
 			var msg = "Got caught\n No money";
@@ -163,7 +163,8 @@ BasicGame.sneak.prototype = {
 			//this.proceed();
 		}
 	},
-	
+	//setting up for moving around the bear
+	//and animating the mounties
    update: function() {
 		if (this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)){
 			console.log("x = " + bear.body.x + " y = " + bear.body.y);
@@ -257,7 +258,7 @@ BasicGame.sneak.prototype = {
 			bear.body.velocity.x=-100;
 		}
 	},
-	
+	//going to the next gamestate
 	proceed: function(){
 		this.physics.gravity.y=0;
 		next = 'can1'

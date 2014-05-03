@@ -1,4 +1,4 @@
-
+//same as levelOne
 BasicGame.canada3 = function (game) {
 
 	var health;

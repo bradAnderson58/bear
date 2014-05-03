@@ -5,7 +5,7 @@ BasicGame.preloader = function (game) {
 	this.ready = false;
 	
 };
-
+//loading all the games art assets
 BasicGame.preloader.prototype = {
 	preload: function() {
 		this.background = '#001f00';
@@ -107,12 +107,12 @@ BasicGame.preloader.prototype = {
 		this.load.audio("fightMusic", "rockytheme.mp3");
 		this.load.audio("punch", "punch.wav");
 	},
-
+//loading a preloadbar
 	create: function() {
 	
 		this.preloadBar.cropEnabled = false;
 	},
-	
+	//waiting until fight music is loaded to send it to the intro state
 	update: function(){
 		
 		if (this.cache.isSoundDecoded('fightMusic') && this.ready == false){

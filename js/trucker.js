@@ -1,7 +1,7 @@
 
 
 BasicGame.trucker = function(game) {
-	
+	//define all variables
 	var mountains;
 	var player;
 	var scaler=.1;
@@ -32,7 +32,7 @@ BasicGame.trucker = function(game) {
 };
 
 BasicGame.trucker.prototype = {
-	
+	//bringing in the heath intox and money from the previous level
 	init: function(){
 		health = (health/100)*192;
 		//health = health;
@@ -40,7 +40,7 @@ BasicGame.trucker.prototype = {
 		money = money;
 	},
 	
-	
+	//this creates the level and needed gravity
     create: function() {
 		scaler = .1;
 		gameover = true;
@@ -117,7 +117,7 @@ BasicGame.trucker.prototype = {
 		lineevent=this.time.events.loop(400, this.createLine, this);
 		gameend=this.time.events.add(90000, this.over,this);
     },
-
+	//playing the finishing animations and tweens
 	over: function() {
 		var style = { font: "bold 40pt Arial", fill: "#ffffff", align: "center", stroke: "#258acc", strokeThickness: 8 };
 		this.add.text(512, 300, "Round Over", style);
@@ -134,7 +134,7 @@ BasicGame.trucker.prototype = {
 		truck.body.allowGravity = true;
 		back.body.allowGravity = true;
 	},
-	
+	//stops events then sends the level to the next level
 	over2: function(){
 		gameover=false;
 		this.time.events.remove(gameend);
@@ -143,7 +143,7 @@ BasicGame.trucker.prototype = {
 		this.physics.gravity.y = 0;
 		this.game.state.start('store', health, intox, money, next);
 	},
-
+//creating all the trees getting sent down
 	createTree: function(){
 		var side=this.rnd.integerInRange(0,2);
 		if (side==0){
@@ -164,7 +164,7 @@ BasicGame.trucker.prototype = {
 			//t.events.onOutOfBounds.add(resetThing, this);
 	
 	},
-	
+	//same as trees for lines
 	createLine: function(){
 			var l = lines.create(535, 130, 'line');
 			l.anchor.setTo(.5,.5);
@@ -172,7 +172,7 @@ BasicGame.trucker.prototype = {
 			l.events.onOutOfBounds.add(this.destroyLine, this);
 			//l.events.onOutOfBounds.add(resetThing, this);
 	},
-	
+	//creating the cars
 	createEnemy: function(){
 			var copcheck=this.rnd.integerInRange(0, 4);
 			var c = cars.create(535, 130, 'carss', copcheck);
@@ -186,7 +186,7 @@ BasicGame.trucker.prototype = {
 			c.events.onOutOfBounds.add(this.destroyCar, this);
 			//c.events.onOutOfBounds.add(resetThing, this);
 	},
-   
+   //updating all the sprites in the scene
    update: function() {
 	   // game.physics.gravity.y = grav;
 		//scaler=scaler+.002;
@@ -249,29 +249,28 @@ BasicGame.trucker.prototype = {
 		}
 		
 	},
-	
 	destroyOther: function(sprite){
 		sprite.kill();
 	},
-	
+	//destroying cars when they get off screen
 	destroyCar: function(sprite){
 		//console.log(sprite);
 		cars.remove(sprite);
 		sprite.kill();
 	},
-	
+	//destroying trees
 	destroyTree: function(sprite){
 		//console.log(sprite);
 		trees.remove(sprite);
 		sprite.kill();
 	},
-	
+	//destroying lines
 	destroyLine: function(sprite){
 		//console.log(sprite);
 		lines.remove(sprite);
 		sprite.kill();
 	},
-	
+	//doing the collisions and tweening for the cars
 	collisionHandler: function(t,c) {
 		 if (c.name==='moneycar'){
 			money=money+.5;

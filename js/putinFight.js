@@ -1,4 +1,4 @@
-
+//setting up the variables for putin fight
 
 BasicGame.putinFight = function(game){
 
@@ -28,6 +28,7 @@ BasicGame.putinFight = function(game){
 };
 
 BasicGame.putinFight.prototype = {
+	//creating and initializing all variables and starting the animations to begin the fight
 	create: function() {
 		bearHP = 100;
 		putinHP = -100;
@@ -62,7 +63,7 @@ BasicGame.putinFight.prototype = {
 	
 		cursors = this.input.keyboard.createCursorKeys();
 	},
-
+//setting up the rules of the game and the mechanics of the fight
 	update: function() {
 		//console.log(putinHP);
 		if (bearHP <= 0) {
@@ -125,25 +126,25 @@ BasicGame.putinFight.prototype = {
 		}
 	},
 
-
+//playing the bear animation
 	showBear: function() {
 		this.add.tween(bearPre).to({x: 0}, 300, Phaser.Easing.Linear.out, true);
 	},
-
+//playing putin animation
 	showPutin: function() {
 		this.add.tween(putinPre).to({x: 470}, 300, Phaser.Easing.Linear.out, true);
 	},
-
+//playing the text animation
 	showVs: function() {
 		this.add.tween(vs).to({y: 300}, 100, Phaser.Easing.Linear.out, true);
 	},
-
+//hiding all the pre sprites
 	hideAll: function() {
 		this.add.tween(bearPre).to({x: -500}, 250, Phaser.Easing.Linear.out, true);
 		this.add.tween(putinPre).to({x: 1200}, 250, Phaser.Easing.Linear.out, true);
 		this.add.tween(vs).to({y: -150}, 100, Phaser.Easing.Linear.out, true);
 	},
-
+//creating all the sprites for the fight
 	createAll: function() {
 		putin = this.add.sprite(400, 420, "putin");
 		putin.scale.setTo(0.45, 0.45);
@@ -180,14 +181,14 @@ BasicGame.putinFight.prototype = {
 		console.log("Doesnt");
 		t12 = this.time.events.add(Phaser.Timer.SECOND * 0.5, this.showRound, this);
 	},
-
+//update for round timer
 	subtractTime: function() {
 		if(bearHP > 0) {
 			time -= 1;
 			timeText.content = time;
 		}
 	},
-
+//game mechanics for putinpunchout
 	putinPunch: function() {
 		if(fightStarted) {
 			putinSide = Math.random();
@@ -224,31 +225,32 @@ BasicGame.putinFight.prototype = {
 			t17 = this.time.events.add(Phaser.Timer.SECOND * 1.25, this.putinPunch, this);
 		}
 	},
-
+//set cooldown for punching
 	resetHit: function() {
 		bear.frame = 1;
 		t18 = this.time.events.add(Phaser.Timer.SECOND * 2, this.punchCooldown, true);
 	},
+	//set the boolean so the bear can punch
 	punchCooldown: function() {
 		canHit = true;
 	},
-
+//reseting putins punch
 	resetPutin: function(ind) {
 		putin.frame = ind;
 	},
-
+//set putin moving
 	putinMove: function() {
 		if (fightStarted) {
 			this.add.tween(putin).to({x: bear.x}, 750, Phaser.Easing.None, true);
 			t19 = this.time.events.add(Phaser.Timer.SECOND * 2, this.putinMove, this);
 		}
 	},
-
+//showing the round
 	showRound: function() {
 		this.add.tween(roundNum).to({x: 315}, 250, Phaser.Easing.Linear.out, true);
 		t20 = this.time.events.add(Phaser.Timer.SECOND * 1, this.startFight, this);
 	},
-
+//starting the fight with text and timers and allowing putin and the bear to move
 	startFight: function() {
 		roundNum.content = "FIGHT!";
 		var t = this.add.tween(roundNum).to({x: 315}, 1000, Phaser.Easing.Linear.out, true)
@@ -264,7 +266,7 @@ BasicGame.putinFight.prototype = {
 	
 		fightStarted = true;
 	},
-
+//if you lost stop the time events and go back to levelOne
 	gameOver: function() {
 		this.add.tween(bear).to({direction: 0}, 500, Phaser.Easing.Linear.In, true);
 		this.time.events.remove(losingTheGame);
@@ -299,7 +301,7 @@ BasicGame.putinFight.prototype = {
 		this.game.state.start('levelOne', health, intox, money);
 
 	},
-
+//win conditions and final tweening
 	win: function() {
 		var txt = this.add.text(125, -100, "All your Crimea are belong to us!", {font: "32pt Impact", fill: "#fff", stroke: "#000", strokeThickness: "2"});
 		var tween = this.add.tween(txt).to({y: 300}, 1500, Phaser.Easing.None, true)
@@ -308,7 +310,7 @@ BasicGame.putinFight.prototype = {
 		.start();
 		t24 = this.time.events.add(Phaser.Timer.SECOND * 5.75, this.showCredits, this);
 	},
-
+//starting the credits
 	showCredits: function() {
 		this.add.tween(background).to({alpha: 0}, 1000, Phaser.Easing.Linear.in, true);
 		this.add.tween(roundNum).to({alpha: 0}, 1000, Phaser.Easing.Linear.in, true);

@@ -1,4 +1,4 @@
-
+//same as levelOne
 BasicGame.levelThree = function (game) {
 
 	var health;

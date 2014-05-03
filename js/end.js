@@ -1,4 +1,4 @@
-
+//useless
 BasicGame.end = function (game) {
 	var song;
 	var singer;

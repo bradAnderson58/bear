@@ -1,3 +1,4 @@
+//loading in the preloaderbar
 BasicGame = {};
 
 BasicGame.boot = function (game){

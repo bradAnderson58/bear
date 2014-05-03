@@ -1,4 +1,4 @@
-
+//useless
 BasicGame.main = function (game) {
 
 

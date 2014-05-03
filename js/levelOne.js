@@ -1,4 +1,4 @@
-
+//setting up variables for levelOne
 BasicGame.levelOne = function (game) {
 
 	var health;
@@ -25,11 +25,13 @@ BasicGame.levelOne = function (game) {
 };
  
 BasicGame.levelOne.prototype = {
+	//bringing health intox and money from the start state
 	init: function(){
 		health = health;
 		intox = intox;
 		money = money;
 	},
+	//creating the map from tilesets loading music and setting up the controls.
     create: function() {
 		this.world.setBounds(0, 0, 3200, 1600);
 		this.stage.backgroundColor = '#001f00';
@@ -96,7 +98,7 @@ BasicGame.levelOne.prototype = {
 		
 		this.input.keyboard.addKeyCapture([ Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.SPACEBAR, Phaser.Keyboard.DOWN, Phaser.Keyboard.UP, Phaser.Keyboard.ONE,Phaser.Keyboard.TWO, Phaser.Keyboard.THREE,Phaser.Keyboard.FOUR,Phaser.Keyboard.FIVE,Phaser.Keyboard.SIX,Phaser.Keyboard.SEVEN,Phaser.Keyboard.EIGHT,Phaser.Keyboard.NINE,Phaser.Keyboard.U,Phaser.Keyboard.I,Phaser.Keyboard.O]);
     },
-    
+    //doing the collisions and key inputs also setting up the warps
     update: function() {
 		 this.physics.collide(player, layer, this.collisionHandler, null, this);
 		 this.physics.collide(cop1, layer);
@@ -214,9 +216,11 @@ BasicGame.levelOne.prototype = {
 			this.game.state.start('putinFight');
 		}
 		//Cops!!
+		//rotate the cop
 		cop1.rotation = this.physics.moveToObject(cop1, player, 300, 300, 300);
 		
     },
+	//decreasing health on collisions
 	collisionHandler: function(){
 		health -= 1.92;
 		healthBar.cameraOffset.x -= 1.92;
@@ -231,12 +235,13 @@ BasicGame.levelOne.prototype = {
 			restart.fixedToCamera = true;
 		}
 	},
+	//killing people
 	roadkill: function(player, dude){
 		dudes.remove(dude);
 		dude.destroy();
 		money += 10;
 	},
-		
+		//if you die you get sent back to levelOne
 	restartFunc: function(){
 		console.log("restartFunc");
 		music.stop();
@@ -245,30 +250,33 @@ BasicGame.levelOne.prototype = {
 		health = 192;
 		this.game.state.start('levelOne', true, false, health, intox, money);
 	},
-	
+	//left turn function for random turning
 	leftFunc: function(){
 		bear.animations.play('left');
 		player.angle -= (Math.random() * 10);
 		this.physics.velocityFromRotation(player.rotation, 400, player.body.velocity);
 	},
+	//right turn function for random turning
 	rightFunc: function(){
 		bear.animations.play('right');
 		player.angle += (Math.random() * 10);
 		this.physics.velocityFromRotation(player.rotation, 400, player.body.velocity);
 	},
-	
+	//after winning get button comes up for next level
 	nextLevel: function(){
 		nextLevel = this.add.button(500, 300, 'nextButton', this.goLevel, this, 1, 0);
 		nextLevel.fixedToCamera = true;
 		music.stop();
 		player.destroy();
 	},
+	//going to the store sending in health intox money and the next level
 	goLevel: function(){
 		//this.time.events.remove(dudeEvent);
 		dudes.removeAll();
 		next = "u2";
 		this.game.state.start('store', health, intox, money, next);
 	},
+	//making civilians on the road
 	addDudes: function(){
 		var newGuy = dudes.create(100, 100, 'dude');
 		
@@ -300,6 +308,7 @@ BasicGame.levelOne.prototype = {
 		newGuy = dudes.create(2955,185,'dude');
 		this.dudeHandler(newGuy, "vert");
 	},
+	//animating the civilians across the roads
 	dudeHandler: function(newGuy, str){
 		newGuy.animations.add('walk', [0,1], 5, true);
 		newGuy.animations.play('walk');

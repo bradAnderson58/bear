@@ -1,4 +1,4 @@
-
+//same basic game as the driving game
 BasicGame.russia2 = function (game) {
 
 	var health;
