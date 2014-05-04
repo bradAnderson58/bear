@@ -9,4 +9,4 @@ arrows to always move the bear for bonus stages.
 A and S to punch in putin punchout.
 
 Credits:
-Credit to all the artists we stole shit from.
+Credit to all the artists we stole stuff from.
