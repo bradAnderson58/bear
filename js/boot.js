@@ -9,7 +9,7 @@ BasicGame.boot = function (game){
 BasicGame.boot.prototype = {
 	preload: function() {
 	
-		this.load.image('bearBar', 'ART/bearDrive.png');
+		this.load.image('bearBar', 'assets/images/bearDrive.png');
 
 	},
 
