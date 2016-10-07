@@ -1,4 +1,5 @@
-//loading in the preloaderbar
+// loading in the preloaderbar
+(function() {
 BasicGame = {};
 
 BasicGame.boot = function (game){
@@ -21,3 +22,5 @@ BasicGame.boot.prototype = {
 		
 	}
 };
+	
+}());
