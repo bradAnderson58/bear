@@ -10,7 +10,7 @@ function handleRequest(req, resp) {
 }
 
 // create server
-var server = http.createServer();
+var server = http.createServer(handleRequest);
 
 server.listen(PORT, function() {
 	console.log('server listening on localhost');
